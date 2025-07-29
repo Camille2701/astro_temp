@@ -1,0 +1,66 @@
+# MacOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Node modules (si vous utilisez npm plus tard)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build directories
+dist/
+build/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.staging
+
+# CSS preprocessors
+*.sass.map
+*.scss.map
+*.css.map
+
+# Cache
+.cache/
+*.cache
+
+# Miscellaneous
+*.zip
+*.tar.gz
+*.rar
