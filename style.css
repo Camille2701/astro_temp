@@ -328,7 +328,7 @@ body {
 
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 2rem 0;
 }
@@ -391,6 +391,36 @@ body {
 
 .form-input::placeholder {
     color: rgba(255, 255, 255, 0.6);
+}
+
+/* Styles spécifiques pour les selects et options */
+select.form-input {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 3rem;
+}
+
+select.form-input option {
+    background: #333;
+    color: white;
+    padding: 0.5rem;
+}
+
+/* Support pour navigateurs WebKit (Chrome, Safari) */
+select.form-input option:hover {
+    background: #555;
+}
+
+/* Styles pour Windows/Edge */
+select.form-input::-ms-expand {
+    display: none;
 }
 
 .form-group {
@@ -622,4 +652,45 @@ body {
 
 .footer-link {
     color: rgba(255,255,255,0.7);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .navbar-menu {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .navbar-menu.active {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(34, 34, 34, 0.98);
+        flex-direction: column;
+        padding: 1rem 2rem;
+    }
+    
+    .navbar-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .products-grid,
+    .products-grid-custom {
+        grid-template-columns: 1fr;
+    }
+    
+    .collection-showcase-large {
+        grid-column: span 1;
+    }
 }
