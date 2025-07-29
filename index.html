@@ -49,16 +49,37 @@
 
 <div class="landing-container">
     
-    <!-- Hero Section avec bannière -->
-    <section class="bg-home hero-section hero-section-custom">
-        <div class="hero-banner">
-            <div class="hero-overlay"></div>
+    <!-- Hero Section -->
+    <section class="hero-section hero-section-hybrid">
+        <!-- Version Desktop avec bannière -->
+        <div class="hero-desktop">
+            <div class="hero-banner">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-subtitle">
+                        DES ÉDITIONS ÉPHÉMÈRES EXCLUSIVES IMAGINÉES PAR DES ILLUSTRATEURS INDÉPENDANTS
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <p class="hero-subtitle">
-                    DES ÉDITIONS ÉPHÉMÈRES EXCLUSIVES IMAGINÉES PAR DES ILLUSTRATEURS INDÉPENDANTS
-                </p>
+        
+        <!-- Version Mobile moderne -->
+        <div class="hero-mobile">
+            <div class="hero-content-modern">
+                <div class="hero-brand">
+                    <h1 class="hero-title">ASTROLAB</h1>
+                    <div class="hero-divider"></div>
+                </div>
+                <div class="hero-text">
+                    <p class="hero-subtitle hero-subtitle-mobile">
+                        DES ÉDITIONS ÉPHÉMÈRES EXCLUSIVES IMAGINÉES PAR DES ILLUSTRATEURS INDÉPENDANTS
+                    </p>
+                </div>
+                <div class="hero-cta">
+                    <a href="#boutique" class="btn-hero">DÉCOUVRIR LA COLLECTION</a>
+                </div>
             </div>
         </div>
     </section>
@@ -94,7 +115,7 @@
                         <div class="click-zone click-right" onclick="flipCard(this, 'right')"></div>
                     </div>
                     <h3 class="card-title">T-SHIRT "STELLON 01"</h3>
-                    <p class="card-text">classique ou Oversize • Noir ou Blanc</p>
+                    <p class="card-text">Classique ou Oversize • Noir ou Blanc</p>
 
                 </div>
                 
@@ -117,7 +138,7 @@
                         <div class="click-zone click-right" onclick="flipCard(this, 'right')"></div>
                     </div>
                     <h3 class="card-title">T-SHIRT "STELLON 02"</h3>
-                    <p class="card-text">classique ou Oversize • Noir ou Blanc</p>
+                    <p class="card-text">Classique ou Oversize • Noir ou Blanc</p>
 
                 </div>
                 
@@ -549,9 +570,30 @@ window.addEventListener('scroll', function() {
 // === EFFET DE TYPING AU CHARGEMENT DE LA PAGE ===
 window.addEventListener('load', () => {
     const heroSubtitle = document.querySelector('.hero-subtitle');
+    const heroSubtitleMobile = document.querySelector('.hero-subtitle-mobile');
+    
+    // Desktop version (avec bannière)
     if (heroSubtitle) {
         const originalText = heroSubtitle.textContent;
         typeWriter(heroSubtitle, originalText, 50);
+    }
+    
+    // Mobile version
+    if (heroSubtitleMobile) {
+        const originalTextMobile = heroSubtitleMobile.textContent;
+        typeWriter(heroSubtitleMobile, originalTextMobile, 50);
+    }
+    
+    // Animation d'apparition du titre (mobile seulement)
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        heroTitle.style.opacity = '0';
+        heroTitle.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+            heroTitle.style.transition = 'all 1s ease';
+            heroTitle.style.opacity = '1';
+            heroTitle.style.transform = 'translateY(0)';
+        }, 500);
     }
 });
 </script>
