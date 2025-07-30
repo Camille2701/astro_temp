@@ -11,6 +11,23 @@ body {
     color: white;
     line-height: 1.6;
     overflow-x: hidden; /* Empêcher le scroll horizontal */
+    /* Optimisations globales pour les images haute résolution */
+    image-rendering: optimizeQuality;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimisations globales pour toutes les images */
+img {
+    /* Éviter les contours blancs bugués */
+    border: none;
+    outline: none;
+    /* Améliorer le rendu sur tous les navigateurs */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimizeQuality;
+    /* Accélération GPU pour éviter les artefacts */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* === NAVIGATION === */
@@ -240,6 +257,11 @@ body {
     backface-visibility: hidden;
     border-radius: 10px;
     overflow: hidden;
+    /* Optimisations container pour images haute résolution */
+    contain: paint layout style;
+    isolation: isolate;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .product-back {
@@ -258,6 +280,38 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Optimisation spécifique pour écrans non-Retina */
+    object-position: center center;
+    /* Rendu haute qualité pour tous types d'écrans */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: optimizeQuality;
+    image-rendering: high-quality;
+    /* Filtres ajustés pour écrans standards (non-Retina) */
+    filter: 
+        contrast(1.20) 
+        saturate(1.25) 
+        brightness(1.08) 
+        blur(0px) 
+        sharpen(1px);
+    /* Transformations optimisées pour écrans externes */
+    transform: translateZ(0) scale(1.002);
+    will-change: transform, filter;
+    /* Élimination complète des artefacts */
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    /* Anti-aliasing renforcé pour écrans non-Retina */
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: optimizeLegibility;
+    /* Optimisation navigateur pour écrans externes */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    /* Transition fluide */
+    transition: filter 0.15s ease;
 }
 
 .product-placeholder {
@@ -528,10 +582,15 @@ select.form-input::-ms-expand {
 .hero-banner {
     flex: 1;
     height: 100%;
-    background-image: url('assets/img/home-banner.png');
+    background-image: url('assets/img/WEBP/Bannière_Astrolab_Stellon.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    /* Optimisations pour améliorer la qualité de la bannière WEBP */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimizeQuality;
+    /* Amélioration du contraste et des couleurs */
+    filter: contrast(1.03) saturate(1.05) brightness(1.01);
     position: relative;
     display: flex;
     align-items: center;
@@ -661,18 +720,6 @@ select.form-input::-ms-expand {
     flex-direction: column;
 }
 
-.hero-banner {
-    flex: 1;
-    background-image: url('assets/img/home-banner.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -734,6 +781,24 @@ select.form-input::-ms-expand {
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
+    /* Optimisations pour améliorer la qualité des images de collection WEBP haute résolution */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
+    image-rendering: high-quality;
+    /* Amélioration du contraste et de la netteté pour éliminer les artefacts */
+    filter: contrast(1.12) saturate(1.20) brightness(1.05) unsharp-mask(amount=0.6, radius=0.4, threshold=0);
+    /* Anti-aliasing renforcé */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Correction des contours blancs bugués */
+    outline: none;
+    border: none;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Optimisation GPU */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Card icons */
@@ -754,6 +819,11 @@ select.form-input::-ms-expand {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    /* Optimisations pour améliorer la qualité des photos de profil WEBP */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimizeQuality;
+    /* Amélioration légère pour les portraits */
+    filter: contrast(1.02) saturate(1.05) brightness(1.01);
 }
 
 /* Grid 3 custom */
@@ -1273,6 +1343,68 @@ img {
     .mobile-menu-toggle {
         min-width: 44px;
         min-height: 44px;
+    }
+}
+
+/* Optimisations pour écrans standards (non-Retina) */
+@media (max-device-pixel-ratio: 1.5), (max-resolution: 144dpi) {
+    .product-image, .collection-item-img, .card-icon img {
+        /* Rendu optimisé pour écrans standards */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimizeQuality;
+        image-rendering: high-quality;
+        /* Filtres renforcés pour écrans non-Retina */
+        filter: contrast(1.25) saturate(1.30) brightness(1.10) sharpen(1.2px);
+        /* Anti-aliasing adapté aux écrans standards */
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+        /* Légère mise à l'échelle pour améliorer la netteté */
+        transform: translateZ(0) scale(1.003);
+        will-change: transform;
+    }
+    
+    .hero-banner {
+        /* Optimisation de la bannière pour écrans standards */
+        filter: contrast(1.08) saturate(1.12) brightness(1.04);
+        background-attachment: scroll;
+    }
+}
+
+/* Optimisations pour écrans haute densité (Retina, 4K, etc.) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .product-image, .collection-item-img, .card-icon img {
+        /* Rendu optimisé pour haute densité avec srcset */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimizeQuality;
+        /* Filtres plus légers pour écrans Retina (déjà nets) */
+        filter: contrast(1.08) saturate(1.12) brightness(1.03);
+        /* Anti-aliasing standard pour Retina */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Éviter les artefacts de redimensionnement avec srcset */
+        transform: translateZ(0);
+        will-change: transform;
+        /* Optimisation pour images responsive */
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .hero-banner {
+        /* Optimisation de la bannière pour haute densité */
+        filter: contrast(1.04) saturate(1.06) brightness(1.01);
+        background-attachment: scroll; /* Évite les bugs sur mobile haute densité */
+    }
+}
+
+/* Optimisations ultra haute densité (8K+) avec srcset */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
+    .product-image, .collection-item-img {
+        /* Rendu maximal pour ultra haute densité - ajusté pour srcset */
+        image-rendering: optimizeQuality;
+        filter: contrast(1.10) saturate(1.16) brightness(1.05);
+        /* GPU acceleration pour performances avec images responsive */
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
     }
 }
 
