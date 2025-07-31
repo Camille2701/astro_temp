@@ -322,12 +322,12 @@
                 <!-- Formulaire de contact -->
                 <div class="form-container">
                     <h4 class="card-title">ENVOYEZ-NOUS UN MESSAGE</h4>
-                    <form action="https://api.web3forms.com/submit" method="POST">
+                    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
                         <!-- Configuration Web3Forms -->
-                        <input type="hidden" name="access_key" value="VOTRE_ACCESS_KEY_ICI">
+                        <input type="hidden" name="access_key" value="bb2b7ad3-c7cc-4056-be2d-72b6514a07f4">
                         <input type="hidden" name="subject" value="Nouveau message depuis ASTROLAB">
                         <input type="hidden" name="from_name" value="Site ASTROLAB">
-                        <input type="hidden" name="redirect" value="/merci.html">
+                        <!-- Pas de redirection automatique, on gère avec JavaScript -->
                         
                         <!-- Protection anti-spam -->
                         <input type="checkbox" name="botcheck" class="hidden-checkbox">
@@ -491,6 +491,40 @@ function typeWriter(element, text, speed = 100) {
 
 // === INITIALISATION AU CHARGEMENT DE LA PAGE ===
 document.addEventListener('DOMContentLoaded', function() {
+    // === GESTION DU FORMULAIRE DE CONTACT ===
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Changer le texte du bouton pendant l'envoi
+            submitButton.textContent = 'ENVOI EN COURS...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Redirection vers notre page personnalisée
+                    window.location.href = 'merci.html';
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                alert('Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer.');
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+    }
+
     // === EFFETS HOVER POUR LES IMAGES DE COLLECTION ===
     const collectionItems = document.querySelectorAll('.collection-item img');
     collectionItems.forEach(img => {
