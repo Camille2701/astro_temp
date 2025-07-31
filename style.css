@@ -448,6 +448,11 @@ img {
     gap: 20px;
     flex-wrap: wrap;
 }
+.preorder-cta-button {
+    margin: 15px auto 0 auto;
+    display: block;
+    text-align: center;
+}
 
 /* === FORMULAIRES === */
 .form-input {
